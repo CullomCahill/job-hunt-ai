@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0",
+    "apify-client": "^2.22.3",
+    "dotenv": "^17.3.1",
+    "googleapis": "^171.4.0"
+  }
+}
