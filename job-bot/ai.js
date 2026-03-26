@@ -3,7 +3,7 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
 const Anthropic = require('@anthropic-ai/sdk');
 
-const client = new Anthropic.default({ apiKey: process.env.ANTHROPIC_API_KEY });
+const client = new Anthropic.default({ apiKey: process.env.ANTHROPIC_API_KEY, maxRetries: 5 });
 const MODEL = 'claude-haiku-4-5-20251001';
 
 async function getFitLevel(job, profile, resume) {
