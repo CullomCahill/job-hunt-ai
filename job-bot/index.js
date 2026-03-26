@@ -8,7 +8,7 @@ const { getFitLevel, getJobSummary, getTweakSuggestion } = require('./ai');
 const { appendRow, getExistingJobLinks } = require('./sheets');
 
 const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '5', 10);
-const BATCH_DELAY_MS = 15000; // stay under 50k tokens/min rate limit
+const BATCH_DELAY_MS = 30000; // stay under 50k tokens/min rate limit
 
 async function processJob(job, profile, resume) {
   const fit = await getFitLevel(job, profile, resume);
