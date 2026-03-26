@@ -33,13 +33,15 @@ Rate the fit. Reply with only one word: STRONG, MEDIUM, MILD, or NO.
 
 Rate NO if any of these are true:
 - The role is primarily regulatory affairs (510(k) authoring, submissions, international registrations, regulatory strategy)
-- The role is focused on hardware medical devices with no software/SaMD component
-- The role is pure complaint investigation or root cause analysis for physical products (no QMS/design control engineering)
+- The role is focused on hardware medical devices with no software component
+- The role is pure complaint investigation or root cause analysis for physical/hardware products
 - The role is purely auditing or documentation with no engineering overlap
-- The role requires significant travel or on-site presence at manufacturing/customer sites
-- The role is staff augmentation or contract with no ownership or leadership component
+- The role requires significant travel or on-site presence at manufacturing or customer sites
+- The role is staff augmentation through a staffing agency with no real ownership (not the same as a direct contractor role at a tech company)
 
-Only rate STRONG or MEDIUM if the company is building a regulated software product (SaMD, digital health, or AI-driven health tech) and the role involves building or improving quality systems — not just maintaining them.`,
+Rate STRONG or MEDIUM if the role involves building or improving quality systems, QA processes, or test infrastructure — especially at early-stage or growth-stage companies. Regulated software environments that qualify include but are not limited to: SaMD, digital health, AI-driven health tech, clinical research software (FDA 21 CFR Part 11), healthcare AI platforms, clinical decision support, and general health tech. Non-health-tech companies at early stage where QA ownership and process-building are central to the role may also qualify as MEDIUM.
+
+Rate STRONG if the role is in regulated health tech or clinical software AND involves building quality systems, design controls, or test infrastructure from scratch or at significant scale.`,
       },
     ],
   });
