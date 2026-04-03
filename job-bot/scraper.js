@@ -7,16 +7,11 @@ const ACTOR_ID = 'curious_coder/linkedin-jobs-scraper';
 const POLL_INTERVAL_MS = 5000;
 const TERMINAL_STATUSES = new Set(['SUCCEEDED', 'FAILED', 'ABORTED', 'TIMED-OUT']);
 
-async function scrapeJobs() {
+async function scrapeJobs(searchUrls) {
   const token = process.env.APIFY_TOKEN;
   if (!token) throw new Error('APIFY_TOKEN is not set in .env');
 
-  const searchUrls = Object.keys(process.env)
-    .filter((k) => /^LINKEDIN_SEARCH_URL_\d+$/.test(k))
-    .sort()
-    .map((k) => process.env[k].trim())
-    .filter(Boolean);
-  if (!searchUrls.length) throw new Error('No LINKEDIN_SEARCH_URL_1 (etc.) variables found in .env');
+  if (!searchUrls || !searchUrls.length) throw new Error('No search URLs provided to scrapeJobs()');
 
   const maxJobsPerSearch = parseInt(process.env.MAX_JOBS || '100', 10);
   const totalCount = maxJobsPerSearch * searchUrls.length;
