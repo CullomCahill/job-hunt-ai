@@ -86,7 +86,8 @@ async function runMode(mode) {
   }
 
   const allJobs = await scrapeJobs(searchUrls);
-  const seen = await getExistingJobLinks(sheetTab);
+  const seenSets = await Promise.all(MODES.map((m) => getExistingJobLinks(m.sheetTab)));
+  const seen = new Set(seenSets.flatMap((s) => [...s]));
   const jobsNotInSheet = allJobs.filter((job) => !seen.has((job.link || '').split('?')[0]));
   const jobs = jobsNotInSheet.filter((job) => !skippedLinks.has((job.link || '').split('?')[0]));
   const preFiltered = jobsNotInSheet.length - jobs.length;

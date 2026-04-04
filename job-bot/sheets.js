@@ -27,7 +27,7 @@ async function appendRow(job, fitLevel, summary, tweakSuggestion, tab = 'Sheet1'
     job.salary || '',
     job.link || '',
     job.applyUrl || '',
-    job.descriptionText || '',
+    (job.descriptionText || '').replace(/\r?\n/g, ' '),
     tweakSuggestion || '',
   ];
 
