@@ -27,3 +27,31 @@ digital therapeutics quality
 
 medical device quality manager (floods with hardware roles)
 QA manager remote (too generic)
+
+
+
+----
+
+# General QE
+
+QA Engineering Manager
+Quality Engineering Lead
+Head of Quality Engineering
+Director of Quality (software/tech)
+QA Manager, AI Products
+Staff QA Engineer
+Principal QA Engineer
+
+AI angle:
+
+AI Quality Engineer
+ML Quality Engineer
+LLM Quality Assurance
+Model Quality Engineer
+AI/ML QA Lead
+
+Management light or IC senior:
+
+Senior QA Engineer
+Staff Quality Engineer
+QA Tech Lead

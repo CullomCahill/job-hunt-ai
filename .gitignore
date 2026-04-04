@@ -1,6 +1,17 @@
 .env
+.env.samd
+.env.general-qa
 
-context/profile.md
-context/resume.md
+
+context/profile.samd.md
+context/resume.samd.md
+context/profile.general-qa.md
+context/resume.general-qa.md
 
 node_modules/
+
+job-bot/skipped-links*.json
+
+notes.md
+
+search_terms.md

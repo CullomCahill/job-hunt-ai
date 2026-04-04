@@ -11,7 +11,7 @@ async function getClient() {
   return auth.getClient();
 }
 
-async function appendRow(job, fitLevel, summary, tweakSuggestion) {
+async function appendRow(job, fitLevel, summary, tweakSuggestion, tab = 'Sheet1') {
   const authClient = await getClient();
   const sheets = google.sheets({ version: 'v4', auth: authClient });
 
@@ -27,25 +27,25 @@ async function appendRow(job, fitLevel, summary, tweakSuggestion) {
     job.salary || '',
     job.link || '',
     job.applyUrl || '',
-    job.descriptionText || '',
+    (job.descriptionText || '').replace(/\r?\n/g, ' '),
     tweakSuggestion || '',
   ];
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: process.env.SPREADSHEET_ID,
-    range: 'Sheet1',
+    range: tab,
     valueInputOption: 'RAW',
     requestBody: { values: [row] },
   });
 }
 
-async function getExistingJobLinks() {
+async function getExistingJobLinks(tab = 'Sheet1') {
   const authClient = await getClient();
   const sheets = google.sheets({ version: 'v4', auth: authClient });
 
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SPREADSHEET_ID,
-    range: 'Sheet1!J:J', // Job Post Link column
+    range: `${tab}!J:J`, // Job Post Link column
   });
 
   const rows = res.data.values || [];
