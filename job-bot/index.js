@@ -10,6 +10,21 @@ const { appendRow, getExistingJobLinks } = require('./sheets');
 const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '5', 10);
 const BATCH_DELAY_MS = 30000; // stay under 50k tokens/min rate limit
 
+const BLOCKED_COMPANIES = new Set([
+  'DataAnnotation',
+]);
+
+const BLOCKED_TITLE_PATTERNS = [
+  /\bAI Trainer\b/i,
+  /\bdata annotation\b/i,
+];
+
+function isBlocked(job) {
+  if (BLOCKED_COMPANIES.has(job.companyName)) return true;
+  if (BLOCKED_TITLE_PATTERNS.some((re) => re.test(job.title || ''))) return true;
+  return false;
+}
+
 const MODES = [
   {
     name: 'samd',
@@ -89,9 +104,11 @@ async function runMode(mode) {
   const seenSets = await Promise.all(MODES.map((m) => getExistingJobLinks(m.sheetTab)));
   const seen = new Set(seenSets.flatMap((s) => [...s]));
   const jobsNotInSheet = allJobs.filter((job) => !seen.has((job.link || '').split('?')[0]));
-  const jobs = jobsNotInSheet.filter((job) => !skippedLinks.has((job.link || '').split('?')[0]));
-  const preFiltered = jobsNotInSheet.length - jobs.length;
-  console.log(`${allJobs.length} scraped, ${jobs.length} new (${allJobs.length - jobsNotInSheet.length} already in sheet, ${preFiltered} previously skipped).`);
+  const jobsNotBlocked = jobsNotInSheet.filter((job) => !isBlocked(job));
+  const jobs = jobsNotBlocked.filter((job) => !skippedLinks.has((job.link || '').split('?')[0]));
+  const preFiltered = jobsNotBlocked.length - jobs.length;
+  const blocked = jobsNotInSheet.length - jobsNotBlocked.length;
+  console.log(`${allJobs.length} scraped, ${jobs.length} new (${allJobs.length - jobsNotInSheet.length} already in sheet, ${preFiltered} previously skipped, ${blocked} blocked).`);
   console.log(`\nProcessing ${jobs.length} jobs in batches of ${BATCH_SIZE}...\n`);
 
   let added = 0;

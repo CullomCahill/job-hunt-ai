@@ -26,6 +26,7 @@ Rate STRONG if the role is in regulated health tech or clinical software AND inv
 - The role is staff augmentation through a staffing agency with no real ownership
 - The company is clearly not tech-forward (e.g. traditional manufacturing, healthcare operations, retail)
 - The role requires deep test automation engineering expertise as the primary function (senior SDET, automation engineer) with no QA strategy or leadership scope
+- The role requires 10+ years of QA experience as a hard minimum, or is VP/C-suite level with clear organizational scope far beyond a team lead or first-time manager
 
 Rate STRONG or MEDIUM if the role involves building or owning QA strategy, test infrastructure, or quality culture at a tech or AI company — especially early to mid-stage where there is real work to do. AI companies, voice AI, SaaS platforms, and developer tools are a strong match. Compliance requirements like HIPAA, SOC2, or FedRAMP are a plus when paired with engineering scope.
 
